@@ -1,4 +1,7 @@
-FROM ruby:3.1.1-alpine3.15 as base1
+FROM ruby:3.2.1-alpine
 
 RUN apk add --update --upgrade --no-cache \
     alpine-sdk
+
+RUN addgroup --system --gid 10001 nonroot_usr && adduser --system --home /nonroot_usr --uid 10001 --ingroup nonroot_usr nonroot_usr
+USER nonroot_usr
