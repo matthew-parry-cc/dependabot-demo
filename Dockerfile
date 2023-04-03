@@ -1,13 +1,9 @@
-#### ruby:2.7.7-alpine3.16 ####
-FROM ruby:2.7.6-alpine3.16 as base0
+FROM ruby:3.2.2-alpine
 
 RUN apk add --update --upgrade --no-cache \
     alpine-sdk
 
+RUN addgroup --system --gid 10001 nonroot_usr && adduser --system --home /nonroot_usr --uid 10001 --ingroup nonroot_usr nonroot_usr
+USER nonroot_usr
 
-#### ruby:3.1.3-alpine3.17 ####
-FROM ruby:3.1.2-alpine3.16 as base1
-
-RUN apk add --update --upgrade --no-cache \
-    alpine-sdk
 
